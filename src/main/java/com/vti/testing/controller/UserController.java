@@ -25,4 +25,7 @@ public class UserController {
         List<User> users = userService.getAllUsers();
         return modelMapper.map(users, new TypeToken<List<UserDTO>>(){}.getType());
     }
+
+    // TODO get user by id
+
 }
