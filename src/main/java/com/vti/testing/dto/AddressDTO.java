@@ -1,13 +1,12 @@
 package com.vti.testing.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 public class AddressDTO {
     private int id;
     private String street;
     private String city;
-    @JsonProperty("username")
-    private String userUsername;
+    private List<UserDTO> users;
 
     public int getId() {
         return id;
@@ -33,11 +32,32 @@ public class AddressDTO {
         this.city = city;
     }
 
-    public String getUserUsername() {
-        return userUsername;
+    public List<UserDTO> getUsers() {
+        return users;
     }
 
-    public void setUserUsername(String userUsername) {
-        this.userUsername = userUsername;
+    public void setUsers(List<UserDTO> users) {
+        this.users = users;
+    }
+
+    public static class UserDTO {
+        private int id;
+        private String username;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
     }
 }

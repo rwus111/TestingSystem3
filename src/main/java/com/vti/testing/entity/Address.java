@@ -2,6 +2,8 @@ package com.vti.testing.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Address {
     @Id
@@ -11,8 +13,8 @@ public class Address {
     private String street;
     @Column(length = 50, nullable = false)
     private String city;
-    @OneToOne(mappedBy = "address")
-    private User user;
+    @OneToMany(mappedBy = "address")
+    private List<User> users;
 
     public int getId() {
         return id;
@@ -38,11 +40,11 @@ public class Address {
         this.city = city;
     }
 
-    public User getUser() {
-        return user;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }
