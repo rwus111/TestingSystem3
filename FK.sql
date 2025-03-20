@@ -37,40 +37,41 @@ VALUE
 						(	'tranvandat'	,		3		);
                         
 -- ======================================================= 1 - n ===================================================================================
--- create table 2: User
-DROP TABLE IF EXISTS `User`;
-CREATE TABLE `User` (
-	id				INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,		
-    username 		VARCHAR(50) NOT NULL UNIQUE KEY
-);
 
 -- create table 1: Address
 DROP TABLE IF EXISTS `Address`;
 CREATE TABLE `Address` (
-	id				INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,		
+	id				INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     street 			VARCHAR(50) NOT NULL,
-    city			VARCHAR(50) NOT NULL,
-    user_id			INT UNSIGNED NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES `User`(id)
+    city			VARCHAR(50) NOT NULL
+);
+
+-- create table 2: User
+DROP TABLE IF EXISTS `User`;
+CREATE TABLE `User` (
+	id				INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username 		VARCHAR(50) NOT NULL UNIQUE KEY,
+    address_id		INT UNSIGNED NOT NULL,
+    FOREIGN KEY (address_id) REFERENCES Address(id)
 );
 
 /*============================== INSERT DATABASE =======================================*/
 /*======================================================================================*/
--- Add data User
-INSERT INTO `User`		(username			) 
-VALUE
-						(	'tranduchieu'	),
-						(	'ngovannam'		),
-						(	'tranvandat'	);
-                        
 -- Add data Address
-INSERT INTO `Address`	(street			, 			city		, 	user_id	) 
-VALUE	                                                        
-						(	'To Huu'	,		'Ha Noi'		,		1		),
-						(	'Pham Hung'	,		'Ha Noi'		,		1		),
-						(	'Pham Bach'	,		'Nam Dinh'		,		3		),
-                        (	'To Dien'	,		'Quang Ngai'	,		2		);
-					
+INSERT INTO `Address`	(street			, 			city	)
+VALUE
+						(	'To Huu'	,		'Ha Noi'	),
+						(	'Pham Hung'	,		'Ha Noi'	),
+						(	'Pham Bach'	,		'Nam Dinh'	),
+                        (	'To Dien'	,		'Quang Ngai'	);
+
+-- Add data User
+INSERT INTO `User`		(username			, 	address_id	)
+VALUE
+						(	'tranduchieu'	,		1		),
+						(	'ngovannam'		,		1		),
+						(	'tranvandat'	,		3		);
+
 -- ======================================================= n - n (Composite key) ===================================================================================
 
                         
