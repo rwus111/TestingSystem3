@@ -14,7 +14,7 @@ public class Address {
     @Column(length = 50, nullable = false)
     private String city;
     @OneToMany(mappedBy = "address")
-    private List<User> users;
+    private List<UserAddress> userAddresses;
 
     public int getId() {
         return id;
@@ -40,11 +40,11 @@ public class Address {
         this.city = city;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<UserAddress> getUserAddresses() {
+        return userAddresses;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUserAddresses(List<UserAddress> userAddresses) {
+        this.userAddresses = userAddresses;
     }
 }
