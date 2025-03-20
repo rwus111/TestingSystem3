@@ -6,27 +6,29 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.util.Date;
 
 @Entity
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"user_id", "address_id"})
+})
 public class UserAddress {
-    @EmbeddedId // đánh dấu khoá kết hợp
-    private UserAddressId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @MapsId("userId")
     private User user;
     @ManyToOne
     @JoinColumn(name = "address_id")
-    @MapsId("addressId")
     private Address address;
     @Column(name = "registered_at")
     @Temporal(TemporalType.TIMESTAMP) // DATETIME
     @CreationTimestamp // DEFAULT NOW()
     private Date registeredAt;
 
-    public UserAddressId getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UserAddressId id) {
+    public void setId(int id) {
         this.id = id;
     }
 
