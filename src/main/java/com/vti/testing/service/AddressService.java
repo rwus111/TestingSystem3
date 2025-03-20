@@ -5,10 +5,17 @@ import com.vti.testing.repository.IAddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AddressService implements IAddressService {
     @Autowired
     private IAddressRepository addressRepository;
+
+    @Override
+    public List<Address> getAllAddresses() {
+        return addressRepository.findAll();
+    }
 
     @Override
     public Address getAddressById(int id) {

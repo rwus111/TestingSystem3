@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,6 +27,10 @@ public class UserController {
         return modelMapper.map(users, new TypeToken<List<UserDTO>>(){}.getType());
     }
 
-    // TODO get user by id
+    @GetMapping("{id}")
+    public UserDTO getUserById(@PathVariable int id){
+        User user = userService.getUserById(id);
+        return modelMapper.map(user, UserDTO.class);
+    }
 
 }
